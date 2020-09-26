@@ -28,6 +28,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
     featured = models.BooleanField()
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
