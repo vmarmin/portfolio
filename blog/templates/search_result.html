@@ -3,10 +3,42 @@
 
 {% block content %}
 
-<h2>This is the post of your search</h2>
-{% for post in queryset %}
-<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-<br />
-{% endfor %}
+<main class="posts-listing">
+  <div class="container">
+  <h2>This is the post of your search</h2>
+  {% for post in queryset %}
+  <div class="post col-xl-6">
+    <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}"
+          alt="post thumbnail" class="img-fluid"></a></div>
+    <div class="post-details">
+      <div class="post-meta d-flex justify-content-between">
+        <div class="date meta-last">{{ post.timestamp }}</div>
+        <div class="category">
+          {% for cat in post.categories.all %}
+          <a href="#">{{ cat }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <a href="{{ post.get_absolute_url }}">
+        <h3 class="h4">{{ post.title }}</h3>
+      </a>
+      <p class="text-muted">{{ post.overview }}</p>
+      <footer class="post-footer d-flex align-items-center"><a href="#"
+          class="author d-flex align-items-center flex-wrap">
+          <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="profile picture" class="img-fluid">
+          </div>
+          <div class="title"><span>{{ post.author.user.username }}</span></div>
+        </a>
+        <div class="date"><i class="icon-clock"></i>{{ post.timestamp|timesince }} ago</div>
+        <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> -->
+  <!-- <br /> -->
+  {% endfor %}
+  </div>
+</main>
 
 {% endblock content %}
