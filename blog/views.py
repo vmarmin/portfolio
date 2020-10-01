@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
@@ -40,3 +40,17 @@ def get_category_count():
 def get_tag_count():
     queryset = Post.objects.values("tags__title").annotate(Count("tags__title"))
     return queryset
+
+
+def search(request):
+    queryset = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(
+            Q(title__icontains=query) |
+            Q(overview__icontains=query)
+        ).distinct()
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, "search_result.html", context)
