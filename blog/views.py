@@ -1,9 +1,12 @@
+from django.db.models import Count
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
 
 
 def blog(request):
+    category_count = get_category_count()
+    tag_count = get_tag_count()
     post_list = Post.objects.all()
     most_recent = Post.objects.order_by("-timestamp")[:3]
     paginator = Paginator(post_list, per_page=4)
@@ -19,9 +22,21 @@ def blog(request):
         "queryset": paginated_queryset,
         "most_recent": most_recent,
         "page_request_var": page_request_var,
+        "category_count": category_count,
+        "tag_count": tag_count,
     }
     return render(request, "blog.html", context)
 
 
-def post(request):
+def post(request, id):
     return render(request, "post.html", {})
+
+
+def get_category_count():
+    queryset = Post.objects.values("categories__title").annotate(Count("categories__title"))
+    return queryset
+
+
+def get_tag_count():
+    queryset = Post.objects.values("tags__title").annotate(Count("tags__title"))
+    return queryset
