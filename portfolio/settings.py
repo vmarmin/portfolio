@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'projects',
     'blog',
     'marketing',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+# ckeditor settings
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'skin': 'moono-lisa',
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'codesnippet',
+        ]),
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
