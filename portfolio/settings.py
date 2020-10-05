@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'blog',
     'marketing',
     'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -134,11 +135,12 @@ USE_TZ = True
 # ckeditor settings
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
+        'toolbar': 'basic',
         'skin': 'moono-lisa',
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
+            'autolink',
             'codesnippet',
         ]),
     },
@@ -150,8 +152,9 @@ CKEDITOR_CONFIGS = {
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_in_env'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 VENV_PATH = BASE_DIR
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
+CKEDITOR_UPLOAD_PATH = "uploads/"
