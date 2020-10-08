@@ -138,11 +138,33 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'basic',
         'skin': 'moono-lisa',
         'extraPlugins': ','.join([
+            'autolink',
+            'codesnippet',
+        ]),
+    },
+    'post': {
+        'toolbar': 'basic',
+        'skin': 'moono-lisa',
+        'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
             'autolink',
             'codesnippet',
         ]),
+    },
+    'comment': {
+        'toolbar': 'comment',
+        'skin': 'moono-lisa',
+        'extraPlugins': ','.join([
+            'autolink',
+            'codesnippet',
+        ]),
+        'toolbar_comment': [
+            ['Bold', 'Italic', 'Underline'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source'],
+            ['CodeSnippet']
+        ]
     },
 }
 

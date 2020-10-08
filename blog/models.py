@@ -41,9 +41,21 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     featured = models.BooleanField()
     view_count = models.IntegerField(default=0)
+    previous_post = models.ForeignKey('self', related_name='previousprevious_post', on_delete=models.SET_NULL, blank=True, null=True)
+    next_post = models.ForeignKey('self', related_name='next', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse("post", kwargs={"id": self.id})
+
+
+class Comment(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
