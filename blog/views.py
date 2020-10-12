@@ -1,5 +1,5 @@
 from django.db.models import Count, Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
 
@@ -44,10 +44,7 @@ def post(request, id):
 
 def latest(request):
     post = Post.objects.order_by('-timestamp')[0]
-    context = {
-        'post': post,
-    }
-    return render(request, "post.html", context)
+    return redirect(post.get_absolute_url())
 
 
 def get_category_count():
