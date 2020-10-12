@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="header">
   <!-- Main Navbar-->
   <nav class="navbar navbar-expand-lg">
@@ -26,14 +28,13 @@
       <!-- Navbar Menu -->
       <div id="navbarcollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="/" class="nav-link active">Home</a>
-          </li>
-          <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a>
-          </li>
-          <li class="nav-item"><a href="/blog/post/latest" class="nav-link ">Post</a>
-          </li>
-          <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
-          </li>
+          <li class="nav-item"><a href="/" class="nav-link active">Home</a> </li>
+          <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a> </li>
+          <li class="nav-item"><a href="/blog/post/latest" class="nav-link ">Post</a> </li>
+          <li class="nav-item"><a href="#" class="nav-link ">Contact</a> </li>
+          {% if user.is_superuser %}
+          <li class="nav-item"><a href="/admin" class="nav-link "><i class="fa fa-cog"></i></a> </li>
+          {% endif %}
         </ul>
         <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
         <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
