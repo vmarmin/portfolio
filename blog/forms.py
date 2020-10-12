@@ -22,7 +22,14 @@ class PostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(
-        widget=CKEditorWidget(config_name="comment"), placeholder="Type your comment"
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Type your comment",
+                "id": "usercomment",
+                "rows": 4,
+            }
+        )
     )
 
     class Meta:

@@ -47,7 +47,8 @@
               </a>
               {% endif %}
               {% if post.next_post %}
-              <a href="{{ post.next_post.get_absolute_url }}" class="next-post text-right d-flex align-items-center justify-content-end">
+              <a href="{{ post.next_post.get_absolute_url }}"
+                class="next-post text-right d-flex align-items-center justify-content-end">
                 <div class="text"><strong class="text-primary">Next Post </strong>
                   <h6>{{ post.next_post.title }}</h6>
                 </div>
@@ -57,31 +58,38 @@
             </div>
             <div class="post-comments">
               <header>
-                <h3 class="h6">Post Comments<span class="no-of-comments">({{ post.comment_count }})</span></h3>
+                <h3 class="h6">Post Comments<span class="no-of-comments">({{ post.comments.count }})</span></h3>
               </header>
+              {% for comment in post.get_comments %}
               <div class="comment">
                 <div class="comment-header d-flex justify-content-between">
                   <div class="user d-flex align-items-center">
-                    <div class="image"><img src="{% static 'img/user.svg' %}" alt="..."
-                        class="img-fluid rounded-circle"></div>
-                    <div class="title"><strong>Jabi Hernandiz</strong><span class="date">May 2016</span></div>
+                    <div class="image">
+                      {% if comment.user.author %}
+                        <img src="{{ comment.user.author.profile_picture.url }}" alt="..." class="img-fluid rounded-circle">
+                      {% else %}
+                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                      {% endif %}
+                    </div>
+                    <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp|timesince }} ago</span></div>
                   </div>
                 </div>
                 <div class="comment-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                  <p>{{ comment.content }}</p>
                 </div>
               </div>
+              {% endfor %}
             </div>
+            {% if request.user.is_authenticated %}
             <div class="add-comment">
               <header>
                 <h3 class="h6">Leave a comment</h3>
               </header>
-              <form action="#" class="commenting-form">
+              <form action="#" method="POST" class="commenting-form">
+                {% csrf_token %}
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <textarea name="usercomment" id="usercomment" placeholder="Type your comment"
-                      class="form-control"></textarea>
+                    {{ form }}
                   </div>
                   <div class="form-group col-md-12">
                     <button type="submit" class="btn btn-secondary">Submit Comment</button>
@@ -89,6 +97,7 @@
                 </div>
               </form>
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
