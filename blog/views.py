@@ -51,11 +51,6 @@ def post(request, id):
     return render(request, "post.html", context)
 
 
-def latest(request):
-    post = Post.objects.order_by('-timestamp')[0]
-    return redirect(post.get_absolute_url())
-
-
 def get_category_count():
     queryset = Post.objects.values("categories__title").annotate(Count("categories__title"))
     return queryset
