@@ -14,6 +14,7 @@ class PostForm(forms.ModelForm):
             "content",
             "thumbnail",
             "categories",
+            "tags",
             "featured",
             "previous_post",
             "next_post",

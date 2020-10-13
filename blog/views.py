@@ -1,8 +1,15 @@
 from django.db.models import Count, Q
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post
-from .forms import CommentForm
+from .models import Post, Author
+from .forms import CommentForm, PostForm
+
+
+def get_author(user):
+    qs = Author.objects.filter(user=user)
+    if qs.exists():
+        return qs[0]
+    return None
 
 
 def blog(request):
@@ -40,7 +47,7 @@ def post(request, id):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
-            return redirect('post', id=post.id)
+            return redirect(reverse('post', kwargs={ 'id': post.id }))
     context = {
         'post': post,
         "category_count": category_count,
@@ -73,3 +80,40 @@ def search(request):
         'queryset': queryset,
     }
     return render(request, "search_result.html", context)
+
+
+def post_create(request):
+    form = PostForm(request.POST or None, request.FILES or None)
+    author = get_author(request.user)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse('post', kwargs={'id': form.instance.id}))
+    context = {
+        'form': form,
+        'title': 'Create post'
+    }
+    return render(request, 'post_create.html', context)
+
+
+def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+    author = get_author(request.user)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse('post', kwargs={'id': form.instance.id}))
+    context = {
+        'form': form,
+        'title': 'Update post'
+    }
+    return render(request, 'post_create.html', context)
+
+
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse("blog"))

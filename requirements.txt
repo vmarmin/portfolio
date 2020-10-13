@@ -4,6 +4,7 @@ black==20.8b1
 click==7.1.2
 Django==3.1.1
 django-ckeditor==6.0.0
+django-crispy-forms==1.9.2
 django-environ==0.4.5
 django-js-asset==1.2.2
 flake8==3.8.3

@@ -31,8 +31,9 @@
           <li class="nav-item"><a href="/" class="nav-link active">Home</a> </li>
           <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a> </li>
           <li class="nav-item"><a href="#" class="nav-link ">Contact</a> </li>
-          {% if user.is_superuser %}
+          {% if request.user.is_staff %}
           <li class="nav-item"><a href="/admin" class="nav-link "><i class="fa fa-cog"></i></a> </li>
+          <li class="nav-item"><a href="{% url "post-create" %}" class="nav-link "><i class="fa fa-pencil-square-o"></i></a> </li>
           {% endif %}
         </ul>
         <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>

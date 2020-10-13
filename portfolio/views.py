@@ -4,7 +4,7 @@ from marketing.models import Signup
 
 
 def index(request):
-    featured = Post.objects.filter(featured=True)
+    featured = Post.objects.filter(featured=True).order_by("-timestamp")
     latest = Post.objects.order_by("-timestamp")[0:3]
     if request.method == 'POST':
         email = request.POST['email']

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'marketing',
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +146,7 @@ CKEDITOR_CONFIGS = {
     'post': {
         'toolbar': 'basic',
         'skin': 'moono-lisa',
+        'width': '100%',
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
@@ -180,3 +182,6 @@ VENV_PATH = BASE_DIR
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# Crispy settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
