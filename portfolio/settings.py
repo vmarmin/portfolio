@@ -43,12 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'projects',
-    'blog',
-    'marketing',
+    'django.contrib.sites',
+    # packages
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
+    # local
+    'projects',
+    'blog',
+    'marketing',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +85,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'portfolio.wsgi.application'
+# Django allauth
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
+
+WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
