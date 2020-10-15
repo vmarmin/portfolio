@@ -35,6 +35,12 @@
           <li class="nav-item"><a href="/admin" class="nav-link "><i class="fa fa-cog"></i></a> </li>
           <li class="nav-item"><a href="{% url "post-create" %}" class="nav-link "><i class="fa fa-pencil-square-o"></i></a> </li>
           {% endif %}
+          {% if request.user.is_authenticated %}
+          <li class="nav-item"><a href="#" class="nav-link "><i class="fa fa-user"></i></a></li>
+          <li class="nav-item"><a href="{% url 'account_logout' %}" class="nav-link "><i class="fa fa-sign-out"></i> Logout</a> </li>
+          {% else %}
+          <li class="nav-item"><a href="{% url 'account_login' %}" class="nav-link "><i class="fa fa-sign-in"></i> Login</a></li>
+          {% endif %}
         </ul>
         <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
         <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
