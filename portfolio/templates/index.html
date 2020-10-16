@@ -3,11 +3,13 @@
 
 {% block content %}
 <!-- Hero Section-->
-<section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
+<section
+  style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center"
+  class="hero">
   <div class="container">
     <div class="row">
       <div class="col-lg-7">
-        <h1>vmarmin - my dev website</h1><a href="#" class="hero-link">Discover More</a>
+        <h1>Welcome to my dev website!</h1><a href="{% url "blog" %}" class="hero-link">Read articles ></a>
       </div>
     </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
   </div>
@@ -18,7 +20,12 @@
     <div class="row">
       <div class="col-lg-8">
         <h2 class="h3">Some great intro here</h2>
-        <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
+        <p class="text-big">Place a nice <strong>introduction</strong> here
+          <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderi.</p>
       </div>
     </div>
   </div>
@@ -40,12 +47,17 @@
                 <a href="#">{{ cat }}</a>
                 {% endfor %}
               </div>
-              <a href="{{ obj.get_absolute_url }}"><h2 class="h4">{{ obj.title }}</h2></a>
+              <a href="{{ obj.get_absolute_url }}">
+                <h2 class="h4">{{ obj.title }}</h2>
+              </a>
             </header>
             <p>{{ obj.overview }}</p>
-            <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="profile picture" class="img-fluid"></div>
-                <div class="title"><span>{{ obj.author }}</span></div></a>
+            <footer class="post-footer d-flex align-items-center"><a href="#"
+                class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="profile picture"
+                    class="img-fluid"></div>
+                <div class="title"><span>{{ obj.author }}</span></div>
+              </a>
               <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago</div>
               <div class="comments"><i class="icon-comment"></i>{{ obj.comments.count }}</div>
             </footer>
@@ -60,11 +72,14 @@
   </div>
 </section>
 <!-- Divider Section-->
-<section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
+<section
+  style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom"
+  class="divider">
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2><a href="#" class="hero-link">View More</a>
+        <h2>I'm a software developer from France, currently living in Canada.</h2>
+        <a href="{% url "about" %}" class="hero-link">More about me</a>
       </div>
     </div>
   </div>
@@ -79,7 +94,8 @@
     <div class="row">
       {% for obj in latest %}
       <div class="post col-md-4">
-        <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="post thumbnail" class="img-fluid"></a></div>
+        <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="post thumbnail"
+              class="img-fluid"></a></div>
         <div class="post-details">
           <div class="post-meta d-flex justify-content-between">
             <div class="date">{{ obj.timestamp }}</div>
@@ -88,7 +104,9 @@
               <a href="#">{{ cat }}</a>
               {% endfor %}
             </div>
-          </div><a href="#"><h3 class="h4">{{ obj.title }}</h3></a>
+          </div><a href="#">
+            <h3 class="h4">{{ obj.title }}</h3>
+          </a>
           <p class="text-muted">{{ obj.overview }}</p>
         </div>
       </div>
@@ -122,20 +140,28 @@
 <section class="gallery no-padding">
   <div class="row">
     <div class="mix col-lg-3 col-md-3 col-sm-6">
-      <div class="item"><a href="img/gallery-1.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-1.jpg' %}" alt="..." class="img-fluid">
-          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+      <div class="item"><a href="img/gallery-1.jpg" data-fancybox="gallery" class="image"><img
+            src="{% static 'img/gallery-1.jpg' %}" alt="..." class="img-fluid">
+          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+        </a></div>
     </div>
     <div class="mix col-lg-3 col-md-3 col-sm-6">
-      <div class="item"><a href="img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-2.jpg' %}" alt="..." class="img-fluid">
-          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+      <div class="item"><a href="img/gallery-2.jpg" data-fancybox="gallery" class="image"><img
+            src="{% static 'img/gallery-2.jpg' %}" alt="..." class="img-fluid">
+          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+        </a></div>
     </div>
     <div class="mix col-lg-3 col-md-3 col-sm-6">
-      <div class="item"><a href="img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-3.jpg' %}" alt="..." class="img-fluid">
-          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+      <div class="item"><a href="img/gallery-3.jpg" data-fancybox="gallery" class="image"><img
+            src="{% static 'img/gallery-3.jpg' %}" alt="..." class="img-fluid">
+          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+        </a></div>
     </div>
     <div class="mix col-lg-3 col-md-3 col-sm-6">
-      <div class="item"><a href="img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
-          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+      <div class="item"><a href="img/gallery-4.jpg" data-fancybox="gallery" class="image"><img
+            src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
+          <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+        </a></div>
     </div>
   </div>
 </section>

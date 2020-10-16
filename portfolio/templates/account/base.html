@@ -11,7 +11,7 @@
 
   {% if messages %}
   <div class="container">
-    <div class="col-sm-6 col-sm-offset-3 mb-5 mt-5">
+    <div class="col-sm-7 col-sm-offset-4 mb-5 mt-5">
       <strong>Messages:</strong>
       <ul>
         {% for message in messages %}
@@ -23,7 +23,7 @@
   {% endif %}
 
   <div class="container">
-    <div class="col-sm-6 col-sm-offset-3 mb-5 mt-5">
+    <div class="col-sm-7 col-sm-offset-4 mb-5 mt-5">
       <strong>Menu:</strong>
       <ul>
         {% if user.is_authenticated %}
@@ -38,7 +38,7 @@
   </div>
 
   <div class="container">
-    <div class="col-sm-6 col-sm-offset-3 mb-5 mt-5">
+    <div class="col-sm-7 col-sm-offset-4 mb-5 mt-5">
       {% block content %}
       {% endblock %}
       {% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+
+    <!-- Intro Section-->
+    <main class="post blog-post col-lg-8">
+      <div class="container">
+        <div class="post-single">
+          <div class="post-details">
+            <div class="post-body">
+              <h2 class="h3 mt-5">Who I am</h2>
+              <p>This is a quick section about me, where I'm from, what I do, blablabla...</p>
+              <h2 class="h3 mt-5">Where I've been</h2>
+              <p>Here is a quick map of the countries I've had a chance to visit.</p>
+              <div class="image mt-3">
+                {% include "map_visited_countries.html" %}
+              </div>
+              <h2 class="h3 mt-5">What I love</h2>
+              <p>Cookies and photography</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- side bar -->
+    <aside class="col-lg-4">
+      <div class="widget">
+        <div class="avatar mb-3">
+          <img class="img-fluid rounded-circle" src="{% static 'img/avatar-1.jpg' %}" alt="avatar">
+        </div>
+        <div class="title">
+          <h6 class="h6">Valentin Marmin</h6>
+        </div>
+        {% include "contact_info.html" %}
+      </div>
+    </aside>
+
+  </div>
+</div>
+{% endblock content %}

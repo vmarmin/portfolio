@@ -17,11 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from .views import index
+from .views import index, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name="home"),
+    path('about/', about, name="about"),
     path('blog/', include('blog.urls')),
     path('projects/', include("projects.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
