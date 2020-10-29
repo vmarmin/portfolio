@@ -1,10 +1,10 @@
 from django import forms
 from .models import Post, Comment
-from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget(config_name="post"))
+    content = forms.CharField(widget=CKEditorUploadingWidget(config_name="post"))
 
     class Meta:
         model = Post
