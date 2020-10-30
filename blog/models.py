@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 User = get_user_model()
