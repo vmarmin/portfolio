@@ -51,19 +51,21 @@ def post(request, id):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
-            return redirect(reverse('post', kwargs={ 'id': post.id }))
+            return redirect(reverse("post", kwargs={"id": post.id}))
     context = {
-        'post': post,
+        "post": post,
         "category_count": category_count,
         "most_recent": most_recent,
         "tag_count": tag_count,
-        'form': form
+        "form": form,
     }
     return render(request, "post.html", context)
 
 
 def get_category_count():
-    queryset = Post.objects.values("categories__title").annotate(Count("categories__title"))
+    queryset = Post.objects.values("categories__title").annotate(
+        Count("categories__title")
+    )
     return queryset
 
 
@@ -74,14 +76,13 @@ def get_tag_count():
 
 def search(request):
     queryset = Post.objects.all()
-    query = request.GET.get('q')
+    query = request.GET.get("q")
     if query:
         queryset = queryset.filter(
-            Q(title__icontains=query) |
-            Q(overview__icontains=query)
+            Q(title__icontains=query) | Q(overview__icontains=query)
         ).distinct()
     context = {
-        'queryset': queryset,
+        "queryset": queryset,
     }
     return render(request, "search_result.html", context)
 
@@ -89,32 +90,26 @@ def search(request):
 def post_create(request):
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
-    if request.method == 'POST':
+    if request.method == "POST":
         if form.is_valid():
             form.instance.author = author
             form.save()
-            return redirect(reverse('post', kwargs={'id': form.instance.id}))
-    context = {
-        'form': form,
-        'title': 'Create post'
-    }
-    return render(request, 'post_create.html', context)
+            return redirect(reverse("post", kwargs={"id": form.instance.id}))
+    context = {"form": form, "title": "Create post"}
+    return render(request, "post_create.html", context)
 
 
 def post_update(request, id):
     post = get_object_or_404(Post, id=id)
     form = PostForm(request.POST or None, request.FILES or None, instance=post)
     author = get_author(request.user)
-    if request.method == 'POST':
+    if request.method == "POST":
         if form.is_valid():
             form.instance.author = author
             form.save()
-            return redirect(reverse('post', kwargs={'id': form.instance.id}))
-    context = {
-        'form': form,
-        'title': 'Update post'
-    }
-    return render(request, 'post_create.html', context)
+            return redirect(reverse("post", kwargs={"id": form.instance.id}))
+    context = {"form": form, "title": "Update post"}
+    return render(request, "post_create.html", context)
 
 
 def post_delete(request, id):
