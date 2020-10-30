@@ -1,6 +1,7 @@
-from django import forms
-from .models import Post, Comment
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
+
+from .models import Comment, Post
 
 
 class PostForm(forms.ModelForm):

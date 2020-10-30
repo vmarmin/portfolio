@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import blog, post, search, post_update, post_delete, post_create
+
+from .views import blog, post, post_create, post_delete, post_update, search
 
 urlpatterns = [
     path("", blog, name="blog"),

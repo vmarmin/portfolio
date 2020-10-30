@@ -1,8 +1,9 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Count, Q
-from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post, Author, PostView, AnonPostView
+from django.shortcuts import get_object_or_404, redirect, render, reverse
+
 from .forms import CommentForm, PostForm
+from .models import AnonPostView, Author, Post, PostView
 
 
 def get_author(user):
